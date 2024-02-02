@@ -53,9 +53,12 @@
                                            Foreground="White" VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis"/>
 
                                 <!--キャプションボタン-->
-                                <Button Grid.Column="5" Content="非表示" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                                <Button Grid.Column="6" Content="サイズ" WindowChrome.IsHitTestVisibleInChrome="True"/>
-                                <Button Grid.Column="7" Content="閉" WindowChrome.IsHitTestVisibleInChrome="True"/>
+                                <Button Grid.Column="5" Content="非表示" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{x:Static SystemCommands.MinimizeWindowCommand}"/>
+                                <Button Grid.Column="6" Content="サイズ" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{x:Static SystemCommands.MaximizeWindowCommand}"/>
+                                <Button Grid.Column="7" Content="閉" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{x:Static SystemCommands.CloseWindowCommand}"/>
                             </Grid>
 
                             <!--クライアントエリア-->
