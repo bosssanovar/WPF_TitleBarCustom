@@ -25,12 +25,15 @@ namespace WpfApp1
 
         // 最小化ボタンが押された時
         public ReactiveCommand WindowMinimum { get; } = new();
+
         // 最大化、通常サイズのボタンが押された時
         public ReactiveCommand WindowSize { get; } = new();
+
         // ウインドウを閉じるボタンが押された時
         public ReactiveCommand WindowClose { get; } = new();
-        // ウインドウのサイズが変更されるイベントが発生した時(最大化と通常の変化)
-        public ReactiveCommand SizeChangedCommand { get; } = new();
+
+        // 最大化、通常サイズのボタンデザイン切り替え
+        public ReactivePropertySlim<string> ButtonStyle { get; } = new("1");
 
         static WindowBase()
         {
@@ -40,6 +43,7 @@ namespace WpfApp1
         public WindowBase()
         {
             this.Closing += WindowBase_Closing;
+            this.SizeChanged += WindowBase_SizeChanged;
 
             // 最小化ボタンが押された
             WindowMinimum.Subscribe(_ => this.WindowState = WindowState.Minimized).AddTo(Disposable);
@@ -47,10 +51,11 @@ namespace WpfApp1
             WindowSize.Subscribe(_ => this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal).AddTo(Disposable);
             // 閉じるボタンが押された
             WindowClose.Subscribe(_ => Window.GetWindow(this).Close()).AddTo(Disposable);
-            // ウィンドウサイズが変わった
-            SizeChangedCommand.Subscribe(_ =>
-            {
-            }).AddTo(Disposable);
+        }
+
+        private void WindowBase_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ButtonStyle.Value = this.WindowState == WindowState.Normal ? "1" : "2";
         }
 
         private void WindowBase_Closing(object? sender, System.ComponentModel.CancelEventArgs e)

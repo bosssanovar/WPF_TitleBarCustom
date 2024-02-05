@@ -4,7 +4,76 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:WpfApp1">
 
+    <Style x:Key="SystemButton" TargetType="Button">
+        <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Foreground" Value="LightGray"/>
+        <Setter Property="IsTabStop" Value="False"/>
+        <!-- FontFamilyにMarlettとする事でシステムボタンの絵になる -->
+        <Setter Property="FontFamily" Value="Marlett"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+    
+    <!-- 最大化、最小化のボタン用 -->
+    <Style x:Key="SystemMaxMiniButton" TargetType="Button" BasedOn="{StaticResource SystemButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="HoverButtonBorder" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- マウスカーソルがボタン上に来たら色を変える -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="HoverButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                        <RadialGradientBrush.GradientStops>
+                                            <GradientStop Color="#7F0000FF" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </RadialGradientBrush.GradientStops>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <!-- 閉じるボタン用 -->
+    <Style x:Key="SystemCloseButton" TargetType="Button" BasedOn="{StaticResource SystemButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="HoverButtonBorder" BorderThickness="0">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- マウスカーソルがボタン上に来たら色を変える -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="HoverButtonBorder" Property="Background">
+                                <Setter.Value>
+                                    <RadialGradientBrush GradientOrigin="0.5,0.5" Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+                                        <RadialGradientBrush.GradientStops>
+                                            <GradientStop Color="#7FFF0000" Offset="0"/>
+                                            <GradientStop Color="#00000000" Offset="1"/>
+                                        </RadialGradientBrush.GradientStops>
+                                    </RadialGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style TargetType="{x:Type local:WindowBase}">
         <Setter Property="WindowChrome.WindowChrome">
@@ -57,12 +126,12 @@
                                            Foreground="White" VerticalAlignment="Center" FontSize="15" TextTrimming="CharacterEllipsis"/>
 
                                 <!--キャプションボタン-->
-                                <Button Grid.Column="5" Content="非表示" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowMinimum}"/>
-                                <Button Grid.Column="6" Content="サイズ" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowSize}"/>
-                                <Button Grid.Column="7" Content="閉" WindowChrome.IsHitTestVisibleInChrome="True"
-                                        Command="{Binding WindowClose}"/>
+                                <Button Grid.Column="5" Content="0" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding WindowMinimum}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                <Button Grid.Column="6" Content="{Binding ButtonStyle.Value}" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding WindowSize}" Style="{StaticResource SystemMaxMiniButton}"/>
+                                <Button Grid.Column="7" Content="r" WindowChrome.IsHitTestVisibleInChrome="True"
+                                        Command="{Binding WindowClose}" Style="{StaticResource SystemCloseButton}"/>
                             </Grid>
 
                             <!--クライアントエリア-->
