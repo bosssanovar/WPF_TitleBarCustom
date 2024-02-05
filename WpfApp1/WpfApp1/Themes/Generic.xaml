@@ -58,12 +58,8 @@
     <Style TargetType="{x:Type local:WindowBase}">
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CaptionHeight="{x:Static SystemParameters.CaptionHeight}" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}" />
+                <WindowChrome CaptionHeight="30"
+                              ResizeBorderThickness="{x:Static SystemParameters.WindowResizeBorderThickness}"/>
             </Setter.Value>
         </Setter>
         <Setter Property="MinWidth" Value="300"/>
