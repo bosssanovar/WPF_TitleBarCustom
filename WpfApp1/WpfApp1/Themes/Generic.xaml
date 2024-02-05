@@ -83,7 +83,7 @@
                             </Grid.RowDefinitions>
 
                             <!--タイトルバー-->
-                            <Grid Background="Purple">
+                            <Grid x:Name="titleBar" Background="Purple">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="30"/>
@@ -121,13 +121,18 @@
                         </Grid>
                     </Border>
 
-                    <!-- 最大化した時ウィンドウ枠が画面外にはみ出ないようにする -->
                     <ControlTemplate.Triggers>
+                        <!-- 最大化した時ウィンドウ枠が画面外にはみ出ないようにする -->
                         <Trigger Property="WindowState" Value="Maximized">
                             <Setter TargetName="border" Property="BorderThickness" Value="8"/>
                         </Trigger>
                         <Trigger Property="WindowState" Value="Normal">
                             <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                        
+                        <!--ウィンドウが非アクティブ時のタイトルバー色を切り替える-->
+                        <Trigger Property="IsActive" Value="False">
+                            <Setter TargetName="titleBar" Property="Background" Value="DarkGray"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
