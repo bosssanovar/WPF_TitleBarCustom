@@ -83,7 +83,7 @@
                             </Grid.RowDefinitions>
 
                             <!--タイトルバー-->
-                            <Grid x:Name="titleBar" Background="Purple">
+                            <Grid x:Name="titleBar" Background="DarkGoldenrod">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3"/>
                                     <ColumnDefinition Width="30"/>
