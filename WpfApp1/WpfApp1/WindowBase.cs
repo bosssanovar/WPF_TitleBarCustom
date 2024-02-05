@@ -43,7 +43,7 @@ namespace WpfApp1
         public WindowBase()
         {
             this.Closing += WindowBase_Closing;
-            this.SizeChanged += WindowBase_SizeChanged;
+            this.StateChanged += WindowBase_StateChanged;
 
             // 最小化ボタンが押された
             WindowMinimum.Subscribe(_ => this.WindowState = WindowState.Minimized).AddTo(Disposable);
@@ -53,7 +53,7 @@ namespace WpfApp1
             WindowClose.Subscribe(_ => Window.GetWindow(this).Close()).AddTo(Disposable);
         }
 
-        private void WindowBase_SizeChanged(object sender, SizeChangedEventArgs e)
+        private void WindowBase_StateChanged(object? sender, EventArgs e)
         {
             ButtonStyle.Value = this.WindowState == WindowState.Normal ? "1" : "2";
         }
