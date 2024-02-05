@@ -13,4 +13,8 @@
     <Content Include="icon.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ReactiveProperty" Version="9.3.4" />
+  </ItemGroup>
+
 </Project>
