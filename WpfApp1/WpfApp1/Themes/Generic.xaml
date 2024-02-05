@@ -12,7 +12,7 @@
         <Setter Property="IsTabStop" Value="False"/>
         <!-- FontFamilyにMarlettとする事でシステムボタンの絵になる -->
         <Setter Property="FontFamily" Value="Marlett"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="15"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
     </Style>
@@ -64,6 +64,7 @@
         </Setter>
         <Setter Property="MinWidth" Value="300"/>
         <Setter Property="MinHeight" Value="200"/>
+        <Setter Property="FontSize" Value="16"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">

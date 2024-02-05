@@ -11,7 +11,7 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="MainWindowView" FontSize="30" Foreground="White"/>
         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top"
-                   Text="MainWindowView" FontSize="30" Foreground="White"/>
+                   Text="MainWindowView" Foreground="White"/>
         <Button Content="Button" HorizontalAlignment="Left" Margin="282,237,0,0" VerticalAlignment="Top"
                 Command="{Binding ShowWindow2}"/>
     </Grid>
