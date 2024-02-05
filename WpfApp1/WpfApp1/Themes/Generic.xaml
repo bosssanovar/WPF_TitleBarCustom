@@ -19,7 +19,6 @@
         </Setter>
         <Setter Property="MinWidth" Value="300"/>
         <Setter Property="MinHeight" Value="200"/>
-        <Setter Property="DataContext" Value="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Window}">

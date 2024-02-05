@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using Reactive.Bindings;
+using Reactive.Bindings.Extensions;
+using System.Reactive.Disposables;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,15 +19,18 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : WindowBase
     {
+        public ReactiveCommand ShowWindow2 { get; } = new();
+
         public MainWindow()
         {
-            InitializeComponent();
-        }
+            ShowWindow2.Subscribe(_ =>
+            {
+                var window2 = new Window2();
+                window2.Show();
+            })
+                .AddTo(Disposable);
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var window2 = new Window2();
-            window2.Show();
+            InitializeComponent();
         }
     }
 }

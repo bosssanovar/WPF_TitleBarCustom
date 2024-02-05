@@ -21,7 +21,7 @@ namespace WpfApp1
     public abstract class WindowBase : Window
     {
         // Disposeが必要な処理をまとめてやる
-        private CompositeDisposable Disposable { get; } = new();
+        protected CompositeDisposable Disposable { get; } = new();
 
         // 最小化ボタンが押された時
         public ReactiveCommand WindowMinimum { get; } = new();
@@ -42,13 +42,13 @@ namespace WpfApp1
             this.Closing += WindowBase_Closing;
 
             // 最小化ボタンが押された
-            _ = WindowMinimum.Subscribe(_ => this.WindowState = WindowState.Minimized).AddTo(Disposable);
+            WindowMinimum.Subscribe(_ => this.WindowState = WindowState.Minimized).AddTo(Disposable);
             // 最大化、通常サイズボタンが押された
-            _ = WindowSize.Subscribe(_ => this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal).AddTo(Disposable);
+            WindowSize.Subscribe(_ => this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal).AddTo(Disposable);
             // 閉じるボタンが押された
-            _ = WindowClose.Subscribe(_ => Window.GetWindow(this).Close()).AddTo(Disposable);
+            WindowClose.Subscribe(_ => Window.GetWindow(this).Close()).AddTo(Disposable);
             // ウィンドウサイズが変わった
-            _ = SizeChangedCommand.Subscribe(_ =>
+            SizeChangedCommand.Subscribe(_ =>
             {
             }).AddTo(Disposable);
         }
